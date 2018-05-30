@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlatformGenerator : MonoBehaviour {
 
 	public GameObject thePlatform;
-	public GameObject[] thePlatforms;
+	//public GameObject[] thePlatforms;
+
 	
 	public Transform generationPoint;
 	
@@ -13,7 +14,7 @@ public class PlatformGenerator : MonoBehaviour {
 	public float distanceBetweenMin;
 	public float distanceBetweenMax;
 	
-	public ObjectPooler theObjectPool;
+	public ObjectPooler[] theObjectPools;
 
 	private float platformWidth;
 	private int platformSelector;
@@ -23,10 +24,10 @@ public class PlatformGenerator : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//platformWidth = thePlatform.GetComponent<BoxCollider2D>().size.x;
-		platformWidths = new float[thePlatforms.Length];
+		platformWidths = new float[theObjectPools.Length];
 
-		for(int i=0; i<thePlatforms.Length ; i++){
-			platformWidths[i] = thePlatforms[i].GetComponent<BoxCollider2D>().size.x;
+		for(int i=0; i<theObjectPools.Length; i++){
+			platformWidths[i] = theObjectPools[i].pooledObject.GetComponent<BoxCollider2D>().size.x;
 		}
 	}
 	
@@ -37,20 +38,22 @@ public class PlatformGenerator : MonoBehaviour {
 			
 			distanceBetween = Random.Range(distanceBetweenMin,distanceBetweenMax);
 			
-			platformSelector = Random.Range(0,thePlatforms.Length);
+			platformSelector = Random.Range(0,theObjectPools.Length);
 
-			transform.position = new Vector3(transform.position.x + platformWidths[platformSelector] + distanceBetween, transform.position.y, transform.position.z);
+			transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2) + distanceBetween, transform.position.y, transform.position.z);
 			
 			
 			//PER INSTANZIARE COSE RANDOM
-			Instantiate (thePlatforms[platformSelector], transform.position, transform.rotation);
+			//Instantiate (thePlatforms[platformSelector], transform.position, transform.rotation);
 			
 			
 			//Crea una nuova piattaforma
-			/*GameObject newPlatform = theObjectPool.GetPooledObject();
+			GameObject newPlatform = theObjectPools[platformSelector].GetPooledObject();
 			newPlatform.transform.position = transform.position;
 			newPlatform.transform.rotation = transform.rotation;
-			newPlatform.SetActive(true);*/
+			newPlatform.SetActive(true);
+
+			transform.position = new Vector3(transform.position.x + (platformWidths[platformSelector] / 2), transform.position.y, transform.position.z);
 		}
 			
 	}
