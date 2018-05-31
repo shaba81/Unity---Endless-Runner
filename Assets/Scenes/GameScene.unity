@@ -330,12 +330,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 579997923}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.17, y: 2.3, z: -0.0546875}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.11000013, y: 6.1, z: -0.015625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 1002877212}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &587617134
 GameObject:
@@ -700,7 +700,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 839906111}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.44, y: -0.74, z: -0.010206729}
+  m_LocalPosition: {x: -0.44, y: -2.74, z: -0.010206729}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1091283688}
@@ -856,7 +856,7 @@ MonoBehaviour:
   generationPoint: {fileID: 1557637255}
   distanceBetween: 2.000102e+12
   distanceBetweenMin: 0
-  distanceBetweenMax: 10
+  distanceBetweenMax: 9
   maxHeightChange: 3
   theObjectPools:
   - {fileID: 1355689303}
@@ -871,9 +871,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1002877210}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.06, y: -3.8, z: -0.0390625}
+  m_LocalPosition: {x: 7.06, y: -5.8, z: -0.0390625}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 579997924}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1227,7 +1228,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1191656678}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.548798, y: -1.5415847, z: -0.010206729}
+  m_LocalPosition: {x: -11.38, y: -2.7, z: -0.010206729}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 770569460}
@@ -1719,8 +1720,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2e5c177802199d4a8fa1e60b570e1e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 9
-  jumpForce: 25
+  moveSpeed: 10
+  jumpForce: 13
+  jumpTime: 0.25
   grounded: 0
   whatIsGround:
     serializedVersion: 2
