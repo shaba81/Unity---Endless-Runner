@@ -852,9 +852,9 @@ MonoBehaviour:
     type: 2}
   generationPoint: {fileID: 1557637255}
   distanceBetween: 2.000102e+12
-  distanceBetweenMin: 0
-  distanceBetweenMax: 9
-  maxHeightChange: 3
+  distanceBetweenMin: 1
+  distanceBetweenMax: 10
+  maxHeightChange: 5
   theObjectPools:
   - {fileID: 1355689303}
   - {fileID: 587617136}
@@ -1760,10 +1760,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2e5c177802199d4a8fa1e60b570e1e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
+  moveSpeed: 8
   speedMultiplier: 1.05
   speedIncreaseMilestone: 50
-  jumpForce: 17
+  jumpForce: 13
   jumpTime: 0.25
   grounded: 0
   whatIsGround:
@@ -1772,6 +1772,7 @@ MonoBehaviour:
   groundCheck: {fileID: 2110954985}
   groundCheckRadius: 0.1
   theGameManager: {fileID: 927369967}
+  stoppedJumping: 0
 --- !u!95 &1352335067
 Animator:
   serializedVersion: 3
