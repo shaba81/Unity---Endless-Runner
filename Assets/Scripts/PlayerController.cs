@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour {
 	public Transform groundCheck;
 	public float groundCheckRadius;
 	public GameManager theGameManager;
+	public bool stoppedJumping;
+
 
 	private Rigidbody2D myRigidbody;
 	//private Collider2D myCollider;
@@ -23,6 +25,7 @@ public class PlayerController : MonoBehaviour {
 	private float moveSpeedStore;
 	private float speedMileStoneCountStore;
 	private float speedIncreaseMilestoneStore;
+	private bool canDoubleJump;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +37,8 @@ public class PlayerController : MonoBehaviour {
 		moveSpeedStore = moveSpeed;
 		speedMileStoneCountStore = speedMilestoneCount;
 		speedIncreaseMilestoneStore = speedIncreaseMilestone;
+		stoppedJumping = true;
+		canDoubleJump = true;
 	}
 	
 	// Update is called once per frame
@@ -55,12 +60,21 @@ public class PlayerController : MonoBehaviour {
 
 		if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)){
 			
-			if(grounded) //Lo faccio saltare solo quando tocca il terreno
+			if(grounded){ //Lo faccio saltare solo quando tocca il terreno
 				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
-		
+				stoppedJumping = false;
+
+			}
+
+			if(!grounded && canDoubleJump){
+				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
+				jumpTimeCounter = jumpTime;
+				stoppedJumping = false;
+				canDoubleJump = false;
+			}
 		}
 
-		if(Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0)){
+		if((Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0)) && !stoppedJumping){
 
 			if(jumpTimeCounter > 0){
 				myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
@@ -71,10 +85,12 @@ public class PlayerController : MonoBehaviour {
 		if(Input.GetKeyUp(KeyCode.Space) || Input.GetMouseButtonUp(0)){
 			
 			jumpTimeCounter = 0;
+			stoppedJumping = true;
 		}
 
 		if(grounded){
 			jumpTimeCounter = jumpTime;
+			canDoubleJump = true;
 		}
 
 
