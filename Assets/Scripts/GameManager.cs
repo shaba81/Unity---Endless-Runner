@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
 
 	public Transform platformGenerator;
 	public PlayerController thePlayer;
+	public DeathMenu theDeathScreen;
 
 	private Vector3 platformStartPoint;
 	private Vector3 playerStartPoint;
@@ -25,12 +26,29 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void RestartGame(){
-		StartCoroutine ("RestartGameCo");
+		//StartCoroutine ("RestartGameCo");
+		theScoreManager.scoreIncreasing = false;
+		thePlayer.gameObject.SetActive(false);
+		theDeathScreen.gameObject.SetActive(true);
 	}
 
-	public IEnumerator RestartGameCo(){
-		theScoreManager.scoreIncreasing = false;
+	public void Reset(){
+		theDeathScreen.gameObject.SetActive(false);
+		platformList = FindObjectsOfType<PlatformDestroyer>();
+		for(int i=0; i<platformList.Length; i++){
+			platformList[i].gameObject.SetActive(false);
+		}
+		thePlayer.transform.position = playerStartPoint;
+		platformGenerator.position = platformStartPoint;
+		thePlayer.gameObject.SetActive(true);
+
+		theScoreManager.scoreCount = 0;
+		theScoreManager.scoreIncreasing = true;
+	}
+
+	/*public IEnumerator RestartGameCo(){
 		
+		theScoreManager.scoreIncreasing = false;
 		thePlayer.gameObject.SetActive(false);
 		yield return new WaitForSeconds(0.5f);
 		platformList = FindObjectsOfType<PlatformDestroyer>();
@@ -43,5 +61,5 @@ public class GameManager : MonoBehaviour {
 
 		theScoreManager.scoreCount = 0;
 		theScoreManager.scoreIncreasing = true;
-	}
+	}*/
 }
